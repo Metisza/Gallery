@@ -1,0 +1,98 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/*alinhamento no centro da página*/
+body{ 
+  font-family: sans-Serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgb(188,197,197);
+  gap: 2em;
+}
+
+/*imagens com a mesma largura*/
+img{
+  max-width: 100%;
+  display: block;
+}
+
+/*Distribuição das divs*/
+.gallery {
+  width: 60rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .5em;
+  background-color: white;
+  padding: .5em;
+  box-shadow: 0 0 14px 2px rgba(0,0,0,.5);
+}
+
+/*Espaço entre as imagens calculadas*/
+.image{
+  flex-basis: calc(25% - .5em);
+  position: relative;
+  /* o overflow vai esconder parte do conteudo que transborda*/
+  overflow: hidden;
+  /*flex-grow indica que todas as imagens devem ocupar o espaço disponível, assim se tivesse mais ou menos imagens elas iam se adaptar*/
+  flex-grow: 1;
+}
+
+/*tirando a decoração dos links*/
+.image a{
+  text-decoration: none;
+}
+
+/*colocando os textos sobre as imagens*/
+.gallery p{
+  background-color: rgba(0,0,0,.8);
+  color:white;
+  text-transform: uppercase;
+  padding: 1em;
+  letter-spacing: 2px;
+  font-size: .75em;
+  position: absolute;
+  bottom:0;
+  width: 100%;
+  opacity: .2;
+  /*o transform vai jogar o paragrafo 100% para baixo*/
+  transform: translateY(100%);
+  transition: all .3s ease-in-out;
+}
+
+.image:hover p{
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/*animação das imagens*/
+.image img{
+  transform: scale(1);
+  transition: transform .5s ease-in-out;
+}
+
+.image:hover img{
+  transform: scale(1.2);
+}
+
+/*o content white acima das divs*/
+.image::after{
+  content:"";
+  position: absolute;
+  background-color: white;
+  /*inset: top,right,bottom,left*/
+  inset: 0;
+  opacity: .5;
+  pointer-events: none;
+  transition: opacity .5s ease-in-out;
+}
+
+.image:hover::after{
+  opacity: 0;
+}
